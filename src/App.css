@@ -1,38 +1,57 @@
-.App {
-  text-align: center;
+*{
+    margin:0;
+    padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body{
+    font-size: 20px;
+    background-color: var(--bg-color);
+    color: var(--font-color);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+input,
+button{
+    font-size: 16px;
 }
 
-.App-link {
-  color: #61dafb;
+.usersForm{
+    width: 400px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-container{
+    margin: 10px 5px;
+}
+
+input{
+    background-color: rgb(241, 241, 241);
+    width: calc(100% - 30px);
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+}
+
+input[id='first_name'],
+input[id='last_name']{
+    width: 45%;
+}
+
+.usersForm>button{
+    background-color: rgb(118, 175, 170);
+    color: #fff;
+    width: 98%;
+    padding: 10px 0;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.usersForm>button:hover{
+    background-color: rgb(76, 109, 106);
 }

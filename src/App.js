@@ -1,25 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import "./App.css";
+import { UsersForm } from "./components/UsersForm";
+import { UsersList } from "./components/UsertsList";
 
-function App() {
+export default function App() {
+  const [users, setUsers] = useState([]);
+  const [edit, setEdit] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("https://users-crud1.herokuapp.com/users/")
+      .then((res) => setUsers(res.data));
+  }, []);
+
+  const findAll = () => {
+    axios
+      .get("https://users-crud1.herokuapp.com/users/")
+      .then((res) => setUsers(res.data));
+  };
+
+  const createUser = (newUser) => {
+    axios
+      .post("https://users-crud1.herokuapp.com/users/", newUser)
+      .then(findAll);
+  };
+
+  const selectUser = (selectedUser) => setEdit(selectedUser);
+
+  const updateUser = (updatedUser) => {
+    axios
+      .put(
+        `https://users-crud1.herokuapp.com/users/${updatedUser.id}/`,
+        updatedUser
+      )
+      .then(findAll);
+  };
+
+  const deleteUser = (id) => {
+    axios
+      .delete(`https://users-crud1.herokuapp.com/users/${id}/`)
+      .then(findAll);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UsersForm 
+        createUser={createUser}
+        edit={edit}
+        selectUser={selectUser}
+        updateUser={updateUser}
+        
+      />
+
+      <UsersList 
+        users={users} 
+        deleteUser={deleteUser}
+        selectUser={selectUser}
+      />
     </div>
   );
 }
 
-export default App;
