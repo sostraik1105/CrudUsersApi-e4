@@ -43,9 +43,10 @@ input[id='last_name']{
 }
 
 .usersForm>button{
-    background-color: rgb(118, 175, 170);
+    background-color: rgb(99, 192, 184);
     color: #fff;
     width: 98%;
+    margin-bottom: 10px;
     padding: 10px 0;
     border-radius: 10px;
     border: none;
@@ -53,5 +54,13 @@ input[id='last_name']{
 }
 
 .usersForm>button:hover{
-    background-color: rgb(76, 109, 106);
+    background-color: rgb(43, 68, 66);
+}
+
+button[id='cancel']{
+    background-color: rgb(187, 76, 76);
+}
+
+button[id='cancel']:hover{
+    background-color: rgb(102, 40, 40);
 }
