@@ -11,6 +11,7 @@ export const UsersForm = ({
     const [birthday, setBirthday] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    const [date, setDate] = useState('')
 
     const clear = () => {
         setFirstName('')
@@ -41,6 +42,7 @@ export const UsersForm = ({
     }
 
     useEffect(()=>{
+        setDate(new Date().toLocaleDateString().split("/").reverse())
         if(edit){
             setFirstName(edit.first_name);
             setLastName(edit.last_name);
@@ -52,6 +54,7 @@ export const UsersForm = ({
         }
     }, [edit])
 
+    
     return(
     <>
         <form onSubmit={submit} className="usersForm">
@@ -72,6 +75,7 @@ export const UsersForm = ({
                     placeholder="Last name"
                     onChange={(e) => setLastName(e.target.value)}
                     value={last_name}
+                    required
                 />
             </div>
             <div className="input-container">
@@ -80,6 +84,7 @@ export const UsersForm = ({
                     type="date"
                     id="birthday"
                     min="1920-01-01" 
+                    max={`${date[0]}-${(date[1]<10)? '0'+date[1] : date[1]}-${(date[2]<10)? '0'+date[2] : date[2]}`}
                     onChange={(e) => setBirthday(e.target.value)}
                     value={birthday}
                 />
@@ -92,6 +97,7 @@ export const UsersForm = ({
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
+                    required
                 />
             </div>
             <div className="input-container">
@@ -102,12 +108,13 @@ export const UsersForm = ({
                     id="email"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
+                    required
                 />
             </div>
 
-            <button>Submit</button>
+            <button id='submit' style={edit ? {width: '47%'} : null}>Submit</button>
             {edit && 
-                <button id='cancel' onClick={()=>selectUser(null)}>Cancel</button>
+                <button id='cancel' style={{width: '47%'}} onClick={()=>selectUser(null)}>Cancel</button>
             }
         </form>
     </>

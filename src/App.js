@@ -50,11 +50,11 @@ export default function App() {
         edit={edit}
         selectUser={selectUser}
         updateUser={updateUser}
-        
       />
 
       <UsersList 
         users={users} 
+        edit={edit}
         deleteUser={deleteUser}
         selectUser={selectUser}
       />
